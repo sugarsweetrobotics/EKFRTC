@@ -31,6 +31,8 @@
 
 using namespace RTC;
 
+#include "ekf.h"
+
 /*!
  * @class EKFRTC
  * @brief Extended Kalman Fileter RTC
@@ -295,6 +297,21 @@ class EKFRTC
   
   // </rtc-template>
 
+  ssr::EKF4MobileRobot *m_pEKF;
+
+  RTC::TimedPose2D m_odom_old;
+  ssr::Velocity2D m_odomVelocity;
+
+  RTC::TimedAcceleration3D m_accel_old;
+  RTC::TimedAngularVelocity3D m_angularVel_old;
+  ssr::Velocity2D m_imuVelocity;
+  RTC::Time m_timestamp;
+  RTC::Time m_timestamp_old;
+
+  bool m_initEkf;
+  bool m_angularVelUpdated;
+  bool m_accelUpdated;
+  bool m_odomUpdated;
 };
 
 
